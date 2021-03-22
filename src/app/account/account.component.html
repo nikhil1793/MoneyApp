@@ -1,0 +1,20 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">Citibank</div>
+            <div class="col-md-3">Cleared Balance : {{accountDetail?.cleared_balance | mycurrency}}</div>
+            <div class="col-md-3">Uncleared Balance : {{accountDetail?.uncleared_balance | mycurrency}}</div>
+            <div class="col-md-3">Working Balance :{{accountDetail?.balance | mycurrency}}</div>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary" (click)="addNew()"> ADD TRANSACTION</button>
+            <ag-grid-angular 
+                style="width: 100%; height:400px" class="ag-theme-alpine" 
+                [rowData]="rowData"
+                [gridOptions]="gridOptions"
+                >
+            </ag-grid-angular>
+        </div>
+    </div>
+</div>

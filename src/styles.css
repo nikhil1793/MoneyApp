@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";      
+
+.account-dropdown{
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0;
+}
+
+.dropdown-menu.account-dropdown.show {
+    width: 88%;
+    max-height: 210px;
+    overflow: auto;
+    /* margin: 2px; */
+    margin-left: 15px;
+}
+
+.sidebar .nav i {
+    font-size: 24px;
+    float: left;
+    margin-right: 15px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    color: black;
+}
+
+.modal-backdrop {
+    z-index: 1;
+}
+
+.ag-theme-alpine .ag-popup .mat-form-field {
+    display: inline-block;
+    position: relative;
+    height: 42px !important; 
+    text-align: left;
+}
+
+.category-wrapper {
+    display: flex;
+    overflow: auto;
+    height: 258px;
+}
+
+input.hidden_div {
+    font-size: 16px;
+    height: 38px;
+}
+
+.date_wrapper {
+    width: 194px;
+    display: flex;
+    height: 47px;
+    flex-direction: column;
+}
+
+.dropdown_wrapper{
+    width: 190px;
+    height: 43px;
+    margin-left: 5px;
+}
+
+/* .ag-popup-editor.ag-ltr.ag-popup-child {
+    min-width: 194px !important;
+} */

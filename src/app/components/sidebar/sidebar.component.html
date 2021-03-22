@@ -1,0 +1,110 @@
+<div class="logo">
+    <a [routerLink]="['/add-budget']" class="simple-text">
+        <div class="logo-img">
+            <img src="/assets/img/moneyicon.png" />
+        </div>
+        Money
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li class="budget nav-item">
+            <a class="nav-link">
+                <i class="material-icons">paid</i>
+                <p>{{currentBudget?.name}}</p>
+                <button mat-icon-button (menuClosed)="onMenuClosed($event)" [matMenuTriggerFor]="menu"
+                    class="budget-dropdown" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>perm_media</mat-icon>
+                        <span>Budgets</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon>add_task</mat-icon>
+                        <span>Add Budget</span>
+                    </button>
+                </mat-menu>
+            </a>
+        </li>
+        <ng-container *ngFor="let menuItem of menuItems">
+            <li routerLinkActive="active" *ngIf="menuItem.active && !menuItem.dropdown"  class="{{menuItem.class}} nav-item">
+                <a class="nav-link" 
+                   [routerLink]="(menuItem.title === 'Budget Categories' && currentBudget) ? 
+                     [menuItem.path,currentBudget.id,currentBudget.first_month] : 
+                     [menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+            <li routerLinkActive="active" *ngIf="menuItem.active && menuItem.dropdown"  class="nav-item dropdown budget-accounts">
+                <a class="nav-link" href="javascript:void(0)" (click)="toggle = !toggle">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                    <span class="notification">Budget Accounts</span>
+                    <p>
+                        <span class="d-lg-none d-md-block">Budget Accounts</span>
+                    </p>
+                </a>
+                <div class="budget-acc dropdown-menu account-dropdown" [class.show]='!toggle' *ngIf="currentBudget">
+                    <a class="dropdown-item" *ngFor="let account of currentBudget.accounts | sortBy:'desc':'balance'" 
+                     [routerLink]="['/account/',currentBudget.id,account.id]" routerLinkActive="active">{{account?.name}}   {{account.balance | currency}}</a>
+                </div>
+            </li>
+            <li *ngIf="menuItem.active && menuItem.dropdown"  class="hidden-li nav-item dropdown add-accounts">test</li>
+            <li routerLinkActive="active" *ngIf="menuItem.active && menuItem.dropdown"  class="nav-item dropdown add-accounts">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                    <i class="material-icons">add_circle</i>
+                    <span class="notification">Add Accounts</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a New Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Account Type : </label>
+                        <select class="custom-select" name="accountType" ngModel required>
+                            <option selected>select accont type...</option>
+                            <option value="checking">Checking</option>
+                            <option value="savings">Savings</option>
+                            <option value="cash">Cash</option>
+                            <option value="creditCard">Credit Card</option>
+                            <option value="lineOfCredit">Line Of Credit</option>
+                            <option value="mortgage">Mortgage</option>
+                            <option value="otherLiability">OtherLiability</option>
+                            <option value="medicalDebt">MedicalDebt</option>
+                            <option value="otherDebt">OtherDebt</option>
+                        </select>
+                    </div>
+                    <div class="form-group" required>
+                        <label for="recipient-name" class="col-form-label">Account Name : </label>
+                        <input type="text" class="form-control" name="accountName" ngModel required>
+                    </div>
+                    <div class="form-group" required>
+                        <label for="recipient-name" class="col-form-label">What is the Current Balance ? :</label>
+                        <input type="text" class="form-control" name="currentBalance" ngModel required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

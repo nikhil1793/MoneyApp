@@ -1,0 +1,19 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card card-stats" *ngFor="let budget of budget$|async" (click)="onBudgetClick(budget)">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">paid</i>
+                    </div>
+                    <p class="card-category"> {{ budget.name | uppercase  }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <p>created on {{ budget.last_modified_on }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

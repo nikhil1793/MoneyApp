@@ -1,0 +1,40 @@
+button.mat-menu-trigger.budget-dropdown {
+    position: absolute;
+    right: 24px;
+    top: 30px;
+    background: transparent;
+    border: none;
+}
+
+.budget-accounts > a {
+    background-color: #63aa58cc;
+    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+}
+
+.budget-accounts:hover > a {
+    background-color: #63aa58cc;
+    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+}
+
+.add-accounts > a {
+    background-color: #e96d6dcc;
+    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+}
+li.hidden-li {
+    visibility: hidden;
+    line-height: 2px;
+}
+.budget-acc.dropdown-menu.account-dropdown{
+    position:relative;
+}
+.budget-acc.dropdown-menu.account-dropdown a:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    height: 1px;
+    width: calc(100% - 30px);
+    background-color: rgba(180, 180, 180, 0.3);
+}
+
+
